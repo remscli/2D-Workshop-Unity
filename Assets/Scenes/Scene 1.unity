@@ -235,6 +235,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 223354269}
   - 212: {fileID: 223354268}
+  - 114: {fileID: 223354270}
   m_Layer: 0
   m_Name: background-clouds
   m_TagString: Untagged
@@ -288,6 +289,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1623114366}
   m_RootOrder: 4
+--- !u!114 &223354270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 223354267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05e20c068229b46e4b1c8cc001b7fa9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  factor: 0.05
 --- !u!1 &236960846 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000011730555630, guid: 0504ad736e2cc464ab4d78073263b5ae,
@@ -880,6 +893,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 962509981}
   - 212: {fileID: 962509980}
+  - 114: {fileID: 962509982}
   m_Layer: 0
   m_Name: background-trees
   m_TagString: Untagged
@@ -933,6 +947,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1623114366}
   m_RootOrder: 5
+--- !u!114 &962509982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 962509979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05e20c068229b46e4b1c8cc001b7fa9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  factor: 0.8
 --- !u!1 &986720689
 GameObject:
   m_ObjectHideFlags: 0
@@ -1155,6 +1181,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1551987947}
   - 212: {fileID: 1551987946}
+  - 114: {fileID: 1551987948}
   m_Layer: 0
   m_Name: background-sky
   m_TagString: Untagged
@@ -1208,6 +1235,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1623114366}
   m_RootOrder: 3
+--- !u!114 &1551987948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1551987945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05e20c068229b46e4b1c8cc001b7fa9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  factor: 0
 --- !u!1 &1623114365
 GameObject:
   m_ObjectHideFlags: 0
@@ -1410,6 +1449,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1733556252}
   - 212: {fileID: 1733556251}
+  - 114: {fileID: 1733556253}
   m_Layer: 0
   m_Name: foreground-trees
   m_TagString: Untagged
@@ -1463,6 +1503,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1623114366}
   m_RootOrder: 0
+--- !u!114 &1733556253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1733556250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05e20c068229b46e4b1c8cc001b7fa9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  factor: 2
 --- !u!1001 &1854624414
 Prefab:
   m_ObjectHideFlags: 0
