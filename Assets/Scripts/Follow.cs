@@ -6,6 +6,7 @@ public class Follow : MonoBehaviour {
 	Vector3 offset;
 	Vector3 velocity = Vector3.zero;
 	float maxCameraPosX;
+	Vector3 newPosition;
 
 	public GameObject Target;
 	public float smoothTime = 0.3F;
@@ -21,14 +22,27 @@ public class Follow : MonoBehaviour {
 		float cameraWidth = cameraHeight * camera.aspect;
 
 		maxCameraPosX = sceneSize - cameraWidth;
+		newPosition = camera.transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Vector3 newPosition = transform.position;
-		newPosition.x = Target.transform.position.x + offset.x;
+		Vector3 targetPos = transform.position;
+		targetPos.x = Target.transform.position.x + offset.x;
 
-		if (newPosition.x < 0 || newPosition.x > maxCameraPosX) return;
+		if (targetPos.x < 0) {
+			newPosition.x = 0;
+		} else if (targetPos.x > maxCameraPosX) {
+			newPosition.x = maxCameraPosX;
+		} else {
+			newPosition.x = targetPos.x;
+		}
+
+		translate (newPosition);
+
+	}
+
+	private void translate (Vector3 newPosition) {
 		transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);
 	}
 }
