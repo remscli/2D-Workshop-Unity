@@ -33,4 +33,8 @@ public class Character : MonoBehaviour {
 
 		rigidBody.velocity = tmpVelocity;
 	}
+
+	public void Destroy () {
+		Destroy (rigidBody.gameObject);
+	}
 }
