@@ -8,6 +8,7 @@ TagManager:
   - objects
   - gems
   - hero
+  - ground
   layers:
   - Default
   - TransparentFX
