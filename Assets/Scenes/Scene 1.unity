@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee4cca9a5a594038aa78dfa7adecf91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WalkSpeed: 80
+  WalkSpeed: 200
   animator: {fileID: 0}
   rigidBody: {fileID: 0}
 --- !u!1 &661779815
@@ -191,28 +191,13 @@ GameObject:
   m_Component:
   - 4: {fileID: 661779818}
   - 212: {fileID: 661779817}
-  - 61: {fileID: 661779816}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: upper-collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &661779816
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 661779815}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
 --- !u!212 &661779817
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -258,7 +243,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 10
 --- !u!1 &662671716
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,6 +256,7 @@ GameObject:
   - 92: {fileID: 662671719}
   - 124: {fileID: 662671718}
   - 81: {fileID: 662671717}
+  - 114: {fileID: 662671722}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -346,6 +332,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &662671722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 662671716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 177d397d1357e4819bb3719ee28ea305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hero: {fileID: 0}
 --- !u!1 &937514515
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,7 +357,7 @@ GameObject:
   - 50: {fileID: 937514518}
   m_Layer: 0
   m_Name: blade
-  m_TagString: Untagged
+  m_TagString: objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -788,17 +786,19 @@ PolygonCollider2D:
       - {x: 14.005822, y: 1.1489971}
       - {x: 18.914808, y: 1.1527205}
       - {x: 19.737604, y: 0.699849}
-      - {x: 27.618662, y: 0.685364}
-      - {x: 27.644983, y: 2.3637075}
+      - {x: 27.41683, y: 0.685364}
+      - {x: 27.419601, y: 2.3775654}
       - {x: 23.32817, y: 2.3793046}
       - {x: 23.532232, y: 4.1442313}
-      - {x: 27.926655, y: 4.1526737}
-      - {x: 27.928804, y: -0.12177801}
+      - {x: 27.487606, y: 4.1596026}
+      - {x: 27.447376, y: -0.12177801}
       - {x: 23.692543, y: -0.12793374}
       - {x: 17.640493, y: -0.22754085}
       - {x: 9.907126, y: -0.3224653}
-      - {x: -5.2536945, y: -0.2725619}
-      - {x: -5.267647, y: 0.20921135}
+      - {x: -5.142358, y: -0.21918309}
+      - {x: -5.1808147, y: 4.136656}
+      - {x: -5.1344185, y: 4.135497}
+      - {x: -5.124634, y: 0.23985696}
 --- !u!4 &1522624562
 Transform:
   m_ObjectHideFlags: 0
@@ -811,7 +811,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
 --- !u!1 &1551987945
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,7 +931,7 @@ GameObject:
   - 61: {fileID: 1727152805}
   m_Layer: 0
   m_Name: crate
-  m_TagString: Untagged
+  m_TagString: objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1012,7 +1012,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
 --- !u!1 &1733556250
 GameObject:
   m_ObjectHideFlags: 0
