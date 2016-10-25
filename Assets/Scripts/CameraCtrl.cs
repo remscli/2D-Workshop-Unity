@@ -5,7 +5,6 @@ public class CameraCtrl : MonoBehaviour {
 
 	public GameObject Hero;
 
-	Camera camera;
 	Vector3 offset;
 	float maxCameraPosX;
 
@@ -15,7 +14,7 @@ public class CameraCtrl : MonoBehaviour {
 		GameObject terrain = GameObject.Find ("terrain-collider");
 		float sceneSize = terrain.GetComponent<PolygonCollider2D> ().bounds.size.x;
 
-		camera = GetComponent<Camera> ();
+		Camera camera = GetComponent<Camera> ();
 		float cameraHeight = 2f * camera.orthographicSize;
 		float cameraWidth = cameraHeight * camera.aspect;
 

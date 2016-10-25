@@ -17,8 +17,10 @@ public class Monster : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D collider) {
-		character.SetAnimatorValue ("isDead", true);
-		Invoke ("kill", 0.3f);
+		if (collider.gameObject.tag == "hero") {
+			character.SetAnimatorValue ("isDead", true);
+			Invoke ("kill", 0.3f);
+		}
 	}
 
 	private void kill () {

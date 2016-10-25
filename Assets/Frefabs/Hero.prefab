@@ -23,6 +23,8 @@ GameObject:
   - 61: {fileID: 61000012383320876}
   - 50: {fileID: 50000011541206724}
   - 95: {fileID: 95000010230015684}
+  - 114: {fileID: 114000013855208968}
+  - 114: {fileID: 114000010923950746}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -37,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011730555630}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.8462224, y: -0.8677881, z: 0}
+  m_LocalPosition: {x: -1.41, y: -0.8677881, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -91,6 +93,31 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010923950746
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011730555630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aee4cca9a5a594038aa78dfa7adecf91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WalkSpeed: 200
+  animator: {fileID: 0}
+  rigidBody: {fileID: 0}
+--- !u!114 &114000013855208968
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011730555630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3c15d668051e462fba59abde43a7946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212000013059733714
 SpriteRenderer:
   m_ObjectHideFlags: 1
