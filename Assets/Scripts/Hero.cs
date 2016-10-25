@@ -6,6 +6,8 @@ public class Hero : MonoBehaviour {
 
 	Character character;
 
+	public int JumpingForce = 20000;
+
 	// Grounded
 	bool isGrounded;
 	public bool IsGrounded {
@@ -42,7 +44,7 @@ public class Hero : MonoBehaviour {
 			character.SetAnimatorValue ("isJumping", isJumping = value);
 
 			if (isJumping && isGrounded) {
-				character.rigidBody.AddForce (new Vector3(0, 250));
+				character.rigidBody.AddForce (new Vector3(0, JumpingForce));
 				IsGrounded = false;
 			}
 		}
