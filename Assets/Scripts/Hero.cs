@@ -7,10 +7,15 @@ public class Hero : MonoBehaviour {
 	Character character;
 
 	public int JumpingForce = 20000;
-	public LayerMask platformsLayer;
+	public LayerMask PlatformsLayer;
+	public AudioClip DeathSound;
+	public AudioClip JumpSound;
+	public AudioClip WalkSound;
+	public AudioClip SkidSound;
 
 	bool isDead = false;
 	bool isOnAPlatform = false;
+	AudioSource audio;
 
 	// Grounded
 	bool isGrounded;
@@ -22,6 +27,8 @@ public class Hero : MonoBehaviour {
 			isGrounded = value;
 
 			character.SetAnimatorValue ("isGrounded", isGrounded);
+
+			playSound (JumpSound);
 		}
 	}
 
@@ -48,6 +55,7 @@ public class Hero : MonoBehaviour {
 			character.SetAnimatorValue ("isJumping", isJumping = value);
 
 			if (isJumping && isGrounded) {
+				playSound (JumpSound);
 				character.rigidBody.AddForce (new Vector3(0, JumpingForce));
 				IsGrounded = false;
 			}
@@ -72,6 +80,7 @@ public class Hero : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		character = GetComponent<Character> ();
+		audio = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -80,23 +89,29 @@ public class Hero : MonoBehaviour {
 		IsJumping = Input.GetKey (KeyCode.UpArrow);
 
 		if (Input.GetKey (KeyCode.LeftArrow)) {
+			if (!IsWalking) {
+				playSound (WalkSound, true);
+			}
 			Direction = -1;
 			IsWalking = true;
 		} else if (Input.GetKey (KeyCode.RightArrow)) {
+			if (!IsWalking) {
+				playSound (WalkSound, true);
+			}
 			Direction = 1;
 			IsWalking = true;
 		} else {
+			if (IsWalking) {
+				stopSound ();
+			}
 			Direction = 0;
 			IsWalking = false;
 		}
 	}
 
 	void FixedUpdate () {
-
 		if (isGrounded) {
-			if (character) {
-				character.Walk (Direction);
-			}
+			character.Walk (Direction);
 		}
 	}
 
@@ -109,8 +124,9 @@ public class Hero : MonoBehaviour {
 
 		foreach(ContactPoint2D contact in collision.contacts)
 		{
+			// If we collied with a monster from left or right
 			if (collision.collider.tag == "monsters" && (contact.normal.x > 0.8 || contact.normal.x < -0.8)) {
-				// If the collisioned monster is on a platform and we are on the platform too
+				// Return if the collisioned monster is on a platform and we aren't on this platform
 				if (collision.gameObject.layer == 8 && !isOnAPlatform) {
 					return;
 				}
@@ -120,7 +136,7 @@ public class Hero : MonoBehaviour {
 			}
 		}
 			
-		RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.down, 1, platformsLayer.value);
+		RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.down, 1, PlatformsLayer.value);
 		// If user is on a platform
 		if (hit) {
 			isOnAPlatform = true;
@@ -132,11 +148,23 @@ public class Hero : MonoBehaviour {
 	}
 
 	void die () {
+		if (isDead) return;
+		playSound (DeathSound);
 		character.SetAnimatorValue ("isDead", true);
 		isDead = true;
 	}
 
 	private void shouldIgnoreCollisionsWithPlatformMonsters (bool ignore) {
 		Physics2D.IgnoreLayerCollision (10, 8, ignore);
+	}
+
+	private void playSound (AudioClip audioClip, bool loop = false) {
+		audio.clip = audioClip;
+		audio.loop = loop;
+		audio.Play ();
+	}
+
+	private void stopSound () {
+		audio.Stop ();
 	}
 }

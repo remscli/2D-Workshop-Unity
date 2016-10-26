@@ -7,6 +7,7 @@ public class Monster : MonoBehaviour {
 
 	Character character;
 	Renderer renderer;
+	AudioSource audio;
 
 	bool isDead;
 	float intialPosX;
@@ -30,6 +31,7 @@ public class Monster : MonoBehaviour {
 	void Start () {
 		character = GetComponent<Character> ();
 		renderer = GetComponent<Renderer> ();
+		audio = GetComponent<AudioSource>();
 		intialPosX = transform.position.x;
 		changeDirection (1);
 	}
@@ -62,6 +64,7 @@ public class Monster : MonoBehaviour {
 	}
 
 	private void die () {
+		audio.Play ();
 		character.SetAnimatorValue ("isDead", true);
 		StartCoroutine(FadeTo(0.0f, 0.5f));
 		Invoke ("destroy", 0.3f);
