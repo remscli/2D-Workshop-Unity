@@ -652,7 +652,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011527883160, guid: 25f5be74a4436444ba381b61ef8d2d8a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.3047383
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: 4000011527883160, guid: 25f5be74a4436444ba381b61ef8d2d8a, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1703,7 +1703,7 @@ Prefab:
     - target: {fileID: 114000010923950746, guid: 0504ad736e2cc464ab4d78073263b5ae,
         type: 2}
       propertyPath: WalkSpeed
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 50000011541206724, guid: 0504ad736e2cc464ab4d78073263b5ae,
         type: 2}
@@ -1713,7 +1713,7 @@ Prefab:
     - target: {fileID: 114000013855208968, guid: 0504ad736e2cc464ab4d78073263b5ae,
         type: 2}
       propertyPath: JumpingForce
-      value: 21000
+      value: 30000
       objectReference: {fileID: 0}
     - target: {fileID: 1000011730555630, guid: 0504ad736e2cc464ab4d78073263b5ae, type: 2}
       propertyPath: m_Layer
@@ -4079,7 +4079,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1727152804}
   m_UseAutoMass: 0
-  m_Mass: 800
+  m_Mass: 200
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
