@@ -46,18 +46,20 @@ public class Hero : MonoBehaviour {
 	}
 
 	// Jump
+	int jumpsCount = 0;
 	bool isJumping;
 	public bool IsJumping {
 		get { return isJumping; }
 		set { 
-			if (isJumping == value) return;
+			if (jumpsCount >= 2) return;
 
 			character.SetAnimatorValue ("isJumping", isJumping = value);
 
-			if (isJumping && isGrounded) {
+			if (isJumping) {
 				playSound (JumpSound);
 				character.rigidBody.AddForce (new Vector3(0, JumpingForce));
 				IsGrounded = false;
+				jumpsCount++;
 			}
 		}
 	}
@@ -86,33 +88,25 @@ public class Hero : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (isDead) return;
-		IsJumping = Input.GetKey (KeyCode.UpArrow);
+		IsJumping = Input.GetKeyDown (KeyCode.UpArrow);
 
 		if (Input.GetKey (KeyCode.LeftArrow)) {
-			if (!IsWalking) {
-				playSound (WalkSound, true);
-			}
+			if (!IsWalking) playSound (WalkSound, true);
 			Direction = -1;
 			IsWalking = true;
 		} else if (Input.GetKey (KeyCode.RightArrow)) {
-			if (!IsWalking) {
-				playSound (WalkSound, true);
-			}
+			if (!IsWalking) playSound (WalkSound, true);
 			Direction = 1;
 			IsWalking = true;
 		} else {
-			if (IsWalking) {
-				stopSound ();
-			}
+			if (IsWalking) stopSound ();
 			Direction = 0;
 			IsWalking = false;
 		}
 	}
 
 	void FixedUpdate () {
-		if (isGrounded) {
-			character.Walk (Direction);
-		}
+		character.Walk (Direction);
 	}
 
 	void OnCollisionEnter2D (Collision2D collision) {
@@ -120,6 +114,7 @@ public class Hero : MonoBehaviour {
 			collision.gameObject.tag == "monsters" || 
 			collision.gameObject.tag == "objects") {
 			IsGrounded = true;
+			jumpsCount = 0;
 		} 
 
 		foreach(ContactPoint2D contact in collision.contacts)
@@ -152,6 +147,8 @@ public class Hero : MonoBehaviour {
 		playSound (DeathSound);
 		character.SetAnimatorValue ("isDead", true);
 		isDead = true;
+		Direction = 0;
+		IsWalking = false;
 	}
 
 	private void shouldIgnoreCollisionsWithPlatformMonsters (bool ignore) {
