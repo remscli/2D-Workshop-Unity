@@ -7,6 +7,10 @@ public class Hero : MonoBehaviour {
 	Character character;
 
 	public int JumpingForce = 20000;
+	public LayerMask platformsLayer;
+
+	bool isDead = false;
+	bool isOnAPlatform = false;
 
 	// Grounded
 	bool isGrounded;
@@ -72,6 +76,7 @@ public class Hero : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (isDead) return;
 		IsJumping = Input.GetKey (KeyCode.UpArrow);
 
 		if (Input.GetKey (KeyCode.LeftArrow)) {
@@ -100,6 +105,38 @@ public class Hero : MonoBehaviour {
 			collision.gameObject.tag == "monsters" || 
 			collision.gameObject.tag == "objects") {
 			IsGrounded = true;
+		} 
+
+		foreach(ContactPoint2D contact in collision.contacts)
+		{
+			if (collision.collider.tag == "monsters" && (contact.normal.x > 0.8 || contact.normal.x < -0.8)) {
+				// If the collisioned monster is on a platform and we are on the platform too
+				if (collision.gameObject.layer == 8 && !isOnAPlatform) {
+					return;
+				}
+
+				die();
+				// Invoke ("gameOver", 0.3f);
+			}
 		}
+			
+		RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.down, 1, platformsLayer.value);
+		// If user is on a platform
+		if (hit) {
+			isOnAPlatform = true;
+			shouldIgnoreCollisionsWithPlatformMonsters (false);
+		} else {
+			isOnAPlatform = false;
+			shouldIgnoreCollisionsWithPlatformMonsters (true);
+		}
+	}
+
+	void die () {
+		character.SetAnimatorValue ("isDead", true);
+		isDead = true;
+	}
+
+	private void shouldIgnoreCollisionsWithPlatformMonsters (bool ignore) {
+		Physics2D.IgnoreLayerCollision (10, 8, ignore);
 	}
 }
