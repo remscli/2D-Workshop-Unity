@@ -22,4 +22,8 @@ public class GemsManager : MonoBehaviour {
 		value++;
 		valueText.text = value.ToString();
 	}
+
+	public int GetCollectedGemsCount () {
+		return value;
+	}
 }

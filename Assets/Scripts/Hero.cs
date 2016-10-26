@@ -12,10 +12,26 @@ public class Hero : MonoBehaviour {
 	public AudioClip JumpSound;
 	public AudioClip WalkSound;
 	public AudioClip SkidSound;
+	public GameOverUI gameOverUI;
 
-	bool isDead = false;
 	bool isOnAPlatform = false;
 	AudioSource audio;
+
+	// Playing
+	bool isPlaying = true;
+	public bool IsPlaying {
+		get { return isPlaying; }
+		set { 
+			if (isPlaying == value) return;
+
+			isPlaying = value;
+
+			if (!isPlaying) {
+				Direction = 0;
+				IsWalking = false;
+			}
+		}
+	}
 
 	// Grounded
 	bool isGrounded;
@@ -87,7 +103,7 @@ public class Hero : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (isDead) return;
+		if (!IsPlaying) return;
 		IsJumping = Input.GetKeyDown (KeyCode.UpArrow);
 
 		if (Input.GetKey (KeyCode.LeftArrow)) {
@@ -143,12 +159,15 @@ public class Hero : MonoBehaviour {
 	}
 
 	void die () {
-		if (isDead) return;
+		if (!IsPlaying) return;
 		playSound (DeathSound);
 		character.SetAnimatorValue ("isDead", true);
-		isDead = true;
-		Direction = 0;
-		IsWalking = false;
+		IsPlaying = false;
+		Invoke ("showGameOver", 1.0f);
+	}
+
+	void showGameOver () {
+		gameOverUI.Show ();
 	}
 
 	private void shouldIgnoreCollisionsWithPlatformMonsters (bool ignore) {

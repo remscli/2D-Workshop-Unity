@@ -6,12 +6,14 @@ public class Gem : MonoBehaviour {
 	GemsManager gemsManager;
 	AudioSource audio;
 	Renderer renderer;
+	BoxCollider2D collider;
 
 	// Use this for initialization
 	void Start () {
 		gemsManager = GameObject.Find ("gems-manager").GetComponent<GemsManager> ();
 		renderer = GetComponent<Renderer> ();
 		audio = GetComponent<AudioSource>();
+		collider = GetComponent<BoxCollider2D> ();
 	}
 	
 	// Update is called once per frame
@@ -26,6 +28,7 @@ public class Gem : MonoBehaviour {
 	}
 
 	void collected () {
+		collider.enabled = false;
 		gemsManager.NewGemCollected ();
 		audio.Play();
 		StartCoroutine (FadeTo(0.0f, 0.3f));
