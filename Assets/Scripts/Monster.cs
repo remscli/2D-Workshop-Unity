@@ -14,7 +14,7 @@ public class Monster : MonoBehaviour {
 	public float MaxWalkingDistance = 2;
 
 	// Direction
-	public int direction = 1;
+	int direction = 1;
 	public int Direction {
 		get { return direction; }
 		set {
@@ -33,21 +33,20 @@ public class Monster : MonoBehaviour {
 		renderer = GetComponent<Renderer> ();
 		audio = GetComponent<AudioSource>();
 		intialPosX = transform.position.x;
-		changeDirection (1);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (!isDead) {
-			float walkedDistance = transform.position.x - intialPosX;
-			if (walkedDistance <= -MaxWalkingDistance) {
-				changeDirection (1);
-			} else if (walkedDistance >= MaxWalkingDistance) {
-				changeDirection (-1);
-			}
-
-			character.Walk (Direction);
+		if (isDead)	return;
+		
+		float walkedDistance = transform.position.x - intialPosX;
+		if (walkedDistance <= -MaxWalkingDistance) {
+			Direction = 1;
+		} else if (walkedDistance >= MaxWalkingDistance) {
+			Direction = -1;
 		}
+
+		character.Walk (Direction);
 	}
 
 	void OnCollisionEnter2D (Collision2D collision) {
@@ -59,7 +58,7 @@ public class Monster : MonoBehaviour {
 		}
 
 		if (collision.gameObject.tag != "ground") {
-			changeDirection (Direction == 1 ? -1 : 1);
+			Direction = Direction == 1 ? -1 : 1;
 		}
 	}
 
@@ -72,10 +71,6 @@ public class Monster : MonoBehaviour {
 
 	private void destroy () {
 		character.Destroy ();
-	}
-
-	private void changeDirection (int val) {
-		Direction = val;
 	}
 
 	IEnumerator FadeTo (float value, float time) {
