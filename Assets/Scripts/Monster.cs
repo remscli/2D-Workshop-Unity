@@ -6,6 +6,7 @@ using System.Collections;
 public class Monster : MonoBehaviour {
 
 	Character character;
+	Renderer renderer;
 
 	bool isDead;
 	float intialPosX;
@@ -28,6 +29,7 @@ public class Monster : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		character = GetComponent<Character> ();
+		renderer = GetComponent<Renderer> ();
 		intialPosX = transform.position.x;
 		changeDirection (1);
 	}
@@ -50,8 +52,7 @@ public class Monster : MonoBehaviour {
 		foreach(ContactPoint2D contact in collision.contacts)
 		{
 			if (collision.collider.tag == "hero" && contact.normal.y < -0.8) {
-				character.SetAnimatorValue ("isDead", true);
-				Invoke ("destroy", 0.3f);
+				die ();
 			}
 		}
 
@@ -60,11 +61,27 @@ public class Monster : MonoBehaviour {
 		}
 	}
 
+	private void die () {
+		character.SetAnimatorValue ("isDead", true);
+		StartCoroutine(FadeTo(0.0f, 0.5f));
+		Invoke ("destroy", 0.3f);
+	}
+
 	private void destroy () {
 		character.Destroy ();
 	}
 
 	private void changeDirection (int val) {
 		Direction = val;
+	}
+
+	IEnumerator FadeTo (float value, float time) {
+		float alpha = renderer.material.color.a;
+		for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / time)
+		{
+			Color newColor = new Color(1, 1, 1, Mathf.Lerp(alpha,value,t));
+			renderer.material.color = newColor;
+			yield return null;
+		}
 	}
 }

@@ -1696,44 +1696,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 1000011730555630, guid: 0504ad736e2cc464ab4d78073263b5ae, type: 2}
-      propertyPath: m_TagString
-      value: hero
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010923950746, guid: 0504ad736e2cc464ab4d78073263b5ae,
-        type: 2}
-      propertyPath: WalkSpeed
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 50000011541206724, guid: 0504ad736e2cc464ab4d78073263b5ae,
-        type: 2}
-      propertyPath: m_Mass
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013855208968, guid: 0504ad736e2cc464ab4d78073263b5ae,
-        type: 2}
-      propertyPath: JumpingForce
-      value: 30000
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000011730555630, guid: 0504ad736e2cc464ab4d78073263b5ae, type: 2}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013855208968, guid: 0504ad736e2cc464ab4d78073263b5ae,
-        type: 2}
-      propertyPath: platformsLayerMask.m_Bits
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 212000013059733714, guid: 0504ad736e2cc464ab4d78073263b5ae,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013855208968, guid: 0504ad736e2cc464ab4d78073263b5ae,
-        type: 2}
-      propertyPath: platformsLayer.m_Bits
-      value: 512
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0504ad736e2cc464ab4d78073263b5ae, type: 2}
   m_IsPrefabParent: 0
