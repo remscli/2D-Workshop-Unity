@@ -26,7 +26,7 @@ GameObject:
   - 114: {fileID: 114000012502528018}
   - 61: {fileID: 61000011017885562}
   - 82: {fileID: 82000012799389960}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Monster
   m_TagString: monsters
   m_Icon: {fileID: 0}
@@ -179,8 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48597f2024cb04afaa0d7d761d5005e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxWalkingDistance: 0.8
-  direction: 0
+  MaxWalkingDistance: 13
 --- !u!114 &114000012502528018
 MonoBehaviour:
   m_ObjectHideFlags: 1

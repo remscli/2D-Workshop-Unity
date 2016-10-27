@@ -280,7 +280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gemsManager: {fileID: 482645303}
   SuccessBackground: {fileID: 21300000, guid: 22f24489cdcd44a3ab1b3310092ef1d7, type: 3}
-  FailureBackground: {fileID: 21300000, guid: 1c35aab684c3f4859a8e996ebfb45b5a, type: 3}
+  FailureBackground: {fileID: 21300000, guid: 7aadc9c7d44ae4e11a2411eb617c3905, type: 3}
 --- !u!1 &68348479
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,6 +314,7 @@ Transform:
   - {fileID: 106375627}
   - {fileID: 356922749}
   - {fileID: 1575490578}
+  - {fileID: 130855397}
   m_Father: {fileID: 0}
   m_RootOrder: 1
 --- !u!4 &106375627 stripped
@@ -321,6 +322,62 @@ Transform:
   m_PrefabParentObject: {fileID: 4000012219172102, guid: 4234856284438471ba338d71b161bdbd,
     type: 2}
   m_PrefabInternal: {fileID: 1950018935}
+--- !u!1 &130855396
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 130855397}
+  - 61: {fileID: 130855399}
+  - 114: {fileID: 130855398}
+  m_Layer: 10
+  m_Name: MonstersSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &130855397
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 130855396}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 29.58, y: 0.06, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 68348480}
+  m_RootOrder: 7
+--- !u!114 &130855398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 130855396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8740c14ce00764ba783afce02f092e09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Monster: {fileID: 1000013863177430, guid: 4234856284438471ba338d71b161bdbd, type: 2}
+--- !u!61 &130855399
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 130855396}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -2.46, y: 0.24}
+  serializedVersion: 2
+  m_Size: {x: 5.91, y: 1.25}
 --- !u!1 &161876206
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +455,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 194888316}
   - 61: {fileID: 194888317}
+  - 61: {fileID: 194888318}
   m_Layer: 0
   m_Name: monster-colliders
   m_TagString: Untagged
@@ -432,6 +490,20 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.12, y: 0.27}
+--- !u!61 &194888318
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 194888315}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 23.046091, y: 0.785841}
+  serializedVersion: 2
+  m_Size: {x: 0.06509781, y: 1.2837455}
 --- !u!1 &200145287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,7 +1561,7 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   Priority: 128
   DopplerLevel: 1
@@ -2579,6 +2651,15 @@ Prefab:
       propertyPath: direction
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1000013863177430, guid: 4234856284438471ba338d71b161bdbd, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010620918550, guid: 4234856284438471ba338d71b161bdbd,
+        type: 2}
+      propertyPath: MaxWalkingDistance
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4234856284438471ba338d71b161bdbd, type: 2}
   m_IsPrefabParent: 0
@@ -2855,8 +2936,13 @@ PolygonCollider2D:
       - {x: 27.41683, y: 0.685364}
       - {x: 27.419601, y: 2.3775654}
       - {x: 23.32817, y: 2.3793046}
-      - {x: 23.532232, y: 4.1442313}
-      - {x: 27.487606, y: 4.1596026}
+      - {x: 23.680916, y: 5.8689384}
+      - {x: -5.197896, y: 5.90765}
+      - {x: -5.2023926, y: 4.2082944}
+      - {x: -5.281233, y: 4.208308}
+      - {x: -5.3441343, y: 6.9257526}
+      - {x: 27.4977, y: 6.772971}
+      - {x: 27.487606, y: 4.2488117}
       - {x: 27.447376, y: -0.12177801}
       - {x: 23.692543, y: -0.12793374}
       - {x: 17.640493, y: -0.22754085}
@@ -2932,7 +3018,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 1c35aab684c3f4859a8e996ebfb45b5a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7aadc9c7d44ae4e11a2411eb617c3905, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -5512,6 +5598,10 @@ Prefab:
     - target: {fileID: 114000010620918550, guid: 4234856284438471ba338d71b161bdbd,
         type: 2}
       propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013863177430, guid: 4234856284438471ba338d71b161bdbd, type: 2}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
