@@ -126,6 +126,9 @@ public class Hero : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D (Collision2D collision) {
+		/**
+		 * Hero grouded/jumping state management
+		 **/
 		if(collision.gameObject.tag == "ground" || 
 			collision.gameObject.tag == "monsters" || 
 			collision.gameObject.tag == "objects") {
@@ -134,22 +137,25 @@ public class Hero : MonoBehaviour {
 				IsGrounded = true;
 				jumpsCount = 0;
 			}
-		} 
-
+		}
+			
+		/**
+		 * Monsters collision management
+		 **/
 		foreach(ContactPoint2D contact in collision.contacts)
 		{
 			// If we collied with a monster from left or right
 			if (collision.collider.tag == "monsters" && (contact.normal.x > 0.8 || contact.normal.x < -0.8)) {
 				// Return if the collisioned monster is on a platform and we aren't on this platform
-				if (collision.gameObject.layer == 8 && !isOnAPlatform) {
-					return;
-				}
+				if (collision.gameObject.layer == 8 && !isOnAPlatform) return;
 
-				die();
-				// Invoke ("gameOver", 0.3f);
+				die(contact);
 			}
 		}
-			
+
+		/**
+		 * Platforms management
+		 **/
 		RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.down, 1, PlatformsLayer.value);
 		// If user is on a platform
 		if (hit) {
@@ -161,9 +167,10 @@ public class Hero : MonoBehaviour {
 		}
 	}
 
-	void die () {
+	void die (ContactPoint2D contact) {
 		if (!IsPlaying) return;
 		playSound (DeathSound);
+		character.rigidBody.AddForce(new Vector3(contact.normal.x * JumpingForce / 4, JumpingForce / 4));
 		character.SetAnimatorValue ("isDead", true);
 		IsPlaying = false;
 		Invoke ("showGameOver", 1.0f);

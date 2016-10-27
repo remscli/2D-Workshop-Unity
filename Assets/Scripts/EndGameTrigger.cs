@@ -12,7 +12,7 @@ public class EndGameTrigger : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 
 

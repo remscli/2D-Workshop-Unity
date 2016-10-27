@@ -9,11 +9,13 @@ public class EndGameUI : MonoBehaviour {
 	public Sprite SuccessBackground;
 	public Sprite FailureBackground;
 	Image bgImage;
-	int gemsCount = 0;
+	int collectedGemsCount = 0;
+	int totalGemsCount;
 	bool isCompleted = false;
 
 	// Use this for initialization
 	void Start () {
+		totalGemsCount = GameObject.Find ("Gems").transform.childCount;
 		Transform backgroundTransform = transform.FindChild ("Background");
 		bgImage = backgroundTransform.GetComponent<Image> ();
 		Hide ();
@@ -21,6 +23,9 @@ public class EndGameUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetKeyDown(KeyCode.Return)) {
+			OnRetryButtonClick ();
+		}
 	
 	}
 
@@ -42,7 +47,12 @@ public class EndGameUI : MonoBehaviour {
 	}
 
 	void updateCollectedGemsInformations () {
-		gemsCount = gemsManager.GetCollectedGemsCount ();
+		collectedGemsCount = gemsManager.GetCollectedGemsCount ();
+
+		if (collectedGemsCount.Equals(totalGemsCount)) {
+			Transform label = transform.FindChild ("CollectedGemsLabel");
+			label.GetComponent<Text> ().text = "You've collected all the gems !";
+		}
 
 		Transform collectedItems = transform.FindChild ("CollectedGems").transform;
 
@@ -51,7 +61,7 @@ public class EndGameUI : MonoBehaviour {
 			Image image = child.GetComponent<Image> ();
 			Color color = image.color;
 			 // Set image opacity to 1 if this gems has been collected, 0.4 if not
-			if (i < gemsCount) {
+			if (i < collectedGemsCount) {
 				color.a = 1.0f;
 			} else {
 				color.a = 0.4f;
