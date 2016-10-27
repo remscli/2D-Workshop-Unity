@@ -7,6 +7,8 @@ public class Follow : MonoBehaviour {
 	Vector3 velocity = Vector3.zero;
 	float maxCameraPosX;
 	Vector3 newPosition;
+	Camera camera;
+	float originalCameraSize;
 
 	public GameObject Target;
 	public float smoothTime = 0.3F;
@@ -17,9 +19,10 @@ public class Follow : MonoBehaviour {
 		GameObject terrain = GameObject.Find ("terrain-collider");
 		float sceneSize = terrain.GetComponent<PolygonCollider2D> ().bounds.size.x;
 
-		Camera camera = GetComponent<Camera> ();
+		camera = GetComponent<Camera> ();
 		float cameraHeight = 2f * camera.orthographicSize;
 		float cameraWidth = cameraHeight * camera.aspect;
+		originalCameraSize = camera.orthographicSize;
 
 		maxCameraPosX = sceneSize - cameraWidth;
 		newPosition = camera.transform.position;
@@ -29,6 +32,7 @@ public class Follow : MonoBehaviour {
 	void Update () {
 		Vector3 targetPos = transform.position;
 		targetPos.x = Target.transform.position.x + offset.x;
+		targetPos.y = Target.transform.position.y + offset.y;
 
 		if (targetPos.x < 0) {
 			newPosition.x = 0;
@@ -38,11 +42,25 @@ public class Follow : MonoBehaviour {
 			newPosition.x = targetPos.x;
 		}
 
-		translate (newPosition);
 
+		if (targetPos.y > 2) {
+			newPosition.y = targetPos.y - 2;
+		} else {
+			newPosition.y = 0;
+		}
+
+
+		translate (newPosition);
+		scale (newPosition);
 	}
 
 	private void translate (Vector3 newPosition) {
-		transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);
+		Vector3 pos = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);
+		pos.y = newPosition.y * 0.3f;
+		transform.position = pos;
+	}
+
+	private void scale (Vector3 position) {
+		camera.orthographicSize = originalCameraSize + position.y * 0.3f;
 	}
 }
