@@ -50,7 +50,7 @@ public class EndGameUI : MonoBehaviour {
 		foreach (Transform child in collectedItems){
 			Image image = child.GetComponent<Image> ();
 			Color color = image.color;
-
+			 // Set image opacity to 1 if this gems has been collected, 0.4 if not
 			if (i < gemsCount) {
 				color.a = 1.0f;
 			} else {

@@ -129,8 +129,11 @@ public class Hero : MonoBehaviour {
 		if(collision.gameObject.tag == "ground" || 
 			collision.gameObject.tag == "monsters" || 
 			collision.gameObject.tag == "objects") {
-			IsGrounded = true;
-			jumpsCount = 0;
+
+			if (collision.contacts[0].normal.y > -0.8 ) {
+				IsGrounded = true;
+				jumpsCount = 0;
+			}
 		} 
 
 		foreach(ContactPoint2D contact in collision.contacts)

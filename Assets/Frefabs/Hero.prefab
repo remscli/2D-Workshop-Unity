@@ -70,7 +70,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1000011730555630}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 77d3790c30b1746f2a6c50fe139d20da, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0.030000001, y: -0.120000005}
@@ -119,9 +119,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   JumpingForce: 30000
-  platformsLayer:
+  PlatformsLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
+  DeathSound: {fileID: 0}
+  JumpSound: {fileID: 0}
+  WalkSound: {fileID: 0}
+  SkidSound: {fileID: 0}
+  EndGameUI: {fileID: 0}
 --- !u!212 &212000013059733714
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -150,7 +155,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300102, guid: a5c96241be8bb4f00b6875a6eee26148, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
