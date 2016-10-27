@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EndGameTrigger : MonoBehaviour {
 
-	public GameOverUI gameOverUI;
+	public EndGameUI EndGameUI;
 
 	// Use this for initialization
 	void Start () {
@@ -20,14 +20,7 @@ public class EndGameTrigger : MonoBehaviour {
 		if (collider.gameObject.tag == "hero") {
 			Hero hero = collider.gameObject.GetComponent<Hero> ();
 			hero.IsPlaying = false;
-			showGameOverUI ();
+			EndGameUI.Show (true);
 		}
-	}
-
-	void showGameOverUI () {
-		gameOverUI.Show ();
-		/*Renderer renderer = gameOverUI.GetComponent<Renderer> ();
-		renderer.enabled = true;
-		Debug.Log (renderer);*/
 	}
 }

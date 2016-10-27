@@ -12,7 +12,7 @@ public class Hero : MonoBehaviour {
 	public AudioClip JumpSound;
 	public AudioClip WalkSound;
 	public AudioClip SkidSound;
-	public GameOverUI gameOverUI;
+	public EndGameUI EndGameUI;
 
 	bool isOnAPlatform = false;
 	AudioSource audio;
@@ -167,7 +167,7 @@ public class Hero : MonoBehaviour {
 	}
 
 	void showGameOver () {
-		gameOverUI.Show ();
+		EndGameUI.Show (false);
 	}
 
 	private void shouldIgnoreCollisionsWithPlatformMonsters (bool ignore) {

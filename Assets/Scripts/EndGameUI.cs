@@ -3,13 +3,19 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameOverUI : MonoBehaviour {
+public class EndGameUI : MonoBehaviour {
 
 	public GemsManager gemsManager;
+	public Sprite SuccessBackground;
+	public Sprite FailureBackground;
+	Image bgImage;
 	int gemsCount = 0;
+	bool isCompleted = false;
 
 	// Use this for initialization
 	void Start () {
+		Transform backgroundTransform = transform.FindChild ("Background");
+		bgImage = backgroundTransform.GetComponent<Image> ();
 		Hide ();
 	}
 	
@@ -18,8 +24,10 @@ public class GameOverUI : MonoBehaviour {
 	
 	}
 
-	public void Show () {
+	public void Show (bool state) {
+		isCompleted = state;
 		updateCollectedGemsInformations ();
+		displayBackground ();
 		gameObject.SetActive (true);
 	}
 
@@ -50,6 +58,14 @@ public class GameOverUI : MonoBehaviour {
 			image.color = color;
 
 			i++;
+		}
+	}
+
+	void displayBackground () {
+		if (isCompleted) {
+			bgImage.sprite = SuccessBackground;
+		} else {
+			bgImage.sprite = FailureBackground;
 		}
 	}
 }
