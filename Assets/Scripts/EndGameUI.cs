@@ -29,10 +29,12 @@ public class EndGameUI : MonoBehaviour {
 		updateCollectedGemsInformations ();
 		displayBackground ();
 		gameObject.SetActive (true);
+		gemsManager.gameObject.SetActive (false);
 	}
 
 	public void Hide () {
 		gameObject.SetActive (false);
+		gemsManager.gameObject.SetActive (true);
 	}
 
 	public void OnRetryButtonClick () {
