@@ -2199,7 +2199,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &130855397
 Transform:
   m_ObjectHideFlags: 0
@@ -5310,7 +5310,7 @@ GameObject:
   - 61: {fileID: 576702590}
   - 251: {fileID: 576702592}
   - 114: {fileID: 576702593}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TreeCollider
   m_TagString: ground
   m_Icon: {fileID: 0}

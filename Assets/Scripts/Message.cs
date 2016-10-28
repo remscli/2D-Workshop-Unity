@@ -10,6 +10,7 @@ public class Message : MonoBehaviour {
 	Text textEditor;
 	string message;
 	IEnumerator coroutine;
+	bool hasExecutedOnce = false;
 
 	// Use this for initialization
 	void Start () {
@@ -24,13 +25,16 @@ public class Message : MonoBehaviour {
 	}
 
 	public void ShowMessage () {
+		if (hasExecutedOnce) return;
 		coroutine = typeMessage(0.05f);
 		StartCoroutine (coroutine);
 	}
 
 	public void HideMessage () {
 		textEditor.text = "";
-		if (coroutine != null) StopCoroutine (coroutine);
+		if (coroutine != null) {
+			StopCoroutine (coroutine);
+		}
 	}
 
 	IEnumerator typeMessage (float intervalInSeconds) {
@@ -39,12 +43,12 @@ public class Message : MonoBehaviour {
 		foreach (char character in message.ToCharArray ()) {
 			
 			textEditor.text += previousCharacter;
-	
+
 			if (previousCharacter == '\n') {
 				string[] writtenLines = textEditor.text.Split ('\n');
 				if (writtenLines.Length > 2) {
 					textEditor.text = string.Join("\n", writtenLines.Skip(1).ToArray());
-				} 
+				}
 			}
 
 			float delay = character == '\n' ? 1.0f : intervalInSeconds;
@@ -53,5 +57,7 @@ public class Message : MonoBehaviour {
 				
 			yield return new WaitForSeconds(delay);
 		}
+
+		hasExecutedOnce = true;
 	}
 }

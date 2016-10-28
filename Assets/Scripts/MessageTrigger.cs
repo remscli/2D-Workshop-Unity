@@ -7,7 +7,7 @@ public class MessageTrigger : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		
 	}
 	
 	// Update is called once per frame
@@ -18,12 +18,12 @@ public class MessageTrigger : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D collider) {
 		if (collider.gameObject.tag == "hero") {
 			message.ShowMessage ();		
+
+			Invoke ("hideMessage", 15.0f);
 		}
 	}
 
-	void OnTriggerExit2D (Collider2D collider) {
-		if (collider.gameObject.tag == "hero") {
-			message.HideMessage ();
-		}
+	void hideMessage () {
+		message.HideMessage ();
 	}
 }
