@@ -16,9 +16,9 @@ public class EndGameTrigger : MonoBehaviour {
 	}
 
 
-	void OnTriggerEnter2D (Collider2D collider) {
-		if (collider.gameObject.tag == "hero") {
-			Hero hero = collider.gameObject.GetComponent<Hero> ();
+	void OnCollisionEnter2D (Collision2D collision) {
+		if (collision.gameObject.tag == "hero" && collision.contacts[0].normal.y < -0.8) {
+			Hero hero = collision.gameObject.GetComponent<Hero> ();
 			hero.IsPlaying = false;
 			EndGameUI.Show (true);
 		}
