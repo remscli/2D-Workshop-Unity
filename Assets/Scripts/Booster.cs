@@ -17,6 +17,8 @@ public class Booster : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D collider) {
 		if (collider.gameObject.tag == "hero") {
+			Rigidbody2D rigidbody = collider.gameObject.GetComponent<Rigidbody2D> ();
+			rigidbody.velocity = new Vector2(0, 0);
 			collider.gameObject.GetComponent<Rigidbody2D> ().AddForce (new Vector3(0, BoostForce));
 		}
 	}
