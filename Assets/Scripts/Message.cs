@@ -9,6 +9,7 @@ public class Message : MonoBehaviour {
 
 	Text textEditor;
 	string message;
+	IEnumerator coroutine;
 
 	// Use this for initialization
 	void Start () {
@@ -23,11 +24,13 @@ public class Message : MonoBehaviour {
 	}
 
 	public void ShowMessage () {
-		StartCoroutine (typeMessage(0.05f));
+		coroutine = typeMessage(0.05f);
+		StartCoroutine (coroutine);
 	}
 
 	public void HideMessage () {
 		textEditor.text = "";
+		if (coroutine != null) StopCoroutine (coroutine);
 	}
 
 	IEnumerator typeMessage (float intervalInSeconds) {

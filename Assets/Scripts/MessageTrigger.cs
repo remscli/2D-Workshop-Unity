@@ -16,10 +16,14 @@ public class MessageTrigger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D collider) {
-		message.ShowMessage ();
+		if (collider.gameObject.tag == "hero") {
+			message.ShowMessage ();		
+		}
 	}
 
 	void OnTriggerExit2D (Collider2D collider) {
-		message.HideMessage ();
+		if (collider.gameObject.tag == "hero") {
+			message.HideMessage ();
+		}
 	}
 }
